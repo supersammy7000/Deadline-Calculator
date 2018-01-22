@@ -5,9 +5,29 @@
 <center>
 <h2>Calculate Target Deadline</h2>
 Size(TB)<input type="number" id="size">
-<button type="button"onclick="document.getElementById('deadline').innerHTML = Math.round(219433838/document.getElementById('size').value)+' Seconds'">Calculate</button>
+<button type="button"onclick="document.getElementById('deadline').innerHTML = formatDeadline(document.getElementById('size').value)">Calculate</button>
 
 <p id="deadline"></p>
 </center>
+<script>
+function formatDeadline(size) {
+    deadline = Math.round(219433838 / size);
+    text = Math.floor(deadline / 31536000) + 'y ';
+    text = text + Math.floor(deadline % 31536000 / 2592000) + 'm ';
+    text = text + Math.floor(deadline % 2592000 / 86400) + 'd ';
+    text = text + addZeros(Math.floor(deadline % 86400 / 3600)) + ':';
+    text = text + addZeros(Math.floor(deadline % 3600 / 60)) + ':';
+    text = text + addZeros(Math.floor(deadline % 60));
+    return text;
+}
+function addZeros(number) {
+    number = number + '';
+    if(number.length == 1) {
+        return '0'+number;
+    }
+    return number;
+}
+</script>
+
 </body>
-</html> 
+</html>
