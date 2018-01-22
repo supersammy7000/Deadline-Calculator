@@ -5,8 +5,9 @@
 <center>
 <h2>Calculate Target Deadline</h2>
 Size(TB)<input type="number" id="size">
-<button type="button"onclick="document.getElementById('deadline').innerHTML = formatDeadline(document.getElementById('size').value)">Calculate</button>
+<button type="button"onclick="document.getElementById('deadline').innerHTML = formatDeadline(document.getElementById('size').value); document.getElementById('seconds').innerHTML = Math.round(219433838 / document.getElementById('size').value) + ' seconds'">Calculate</button>
 
+<p id="seconds"></p>
 <p id="deadline"></p>
 </center>
 <script>
