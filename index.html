@@ -16,12 +16,18 @@ Size(TB)<input type="number" id="size">
 <script>
 function formatDeadline(size) {
     deadline = Math.round(193016045 / size);
+    
     text = Math.floor(deadline / 31536000) + 'y ';
-    text = text + Math.floor(deadline % 31536000 / 2592000) + 'm ';
-    text = text + Math.floor(deadline % 2592000 / 86400) + 'd ';
-    text = text + addZeros(Math.floor(deadline % 86400 / 3600)) + ':';
-    text = text + addZeros(Math.floor(deadline % 3600 / 60)) + ':';
-    text = text + addZeros(Math.floor(deadline % 60));
+    deadline = deadline - Math.floor(deadline / 31536000)*31536000;
+    text = text + Math.floor(deadline / 2592000) + 'm ';
+    deadline = deadline - Math.floor(deadline / 2592000)*2592000;
+    text = text + Math.floor(deadline / 86400) + 'd ';
+    deadline = deadline - Math.floor(deadline / 86400)*86400;
+    text = text + addZeros(Math.floor(deadline / 3600)) + ':';
+    deadline = deadline - Math.floor(deadline / 3600)*3600;
+    text = text + addZeros(Math.floor(deadline / 60)) + ':';
+    deadline = deadline - Math.floor(deadline / 60)*60;
+    text = text + addZeros(deadline);
     return text;
 }
 function addZeros(number) {
